@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.Channel;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -33,15 +34,15 @@ public class ChannelTest {
         testChannel2Channel();
     }
 
-    // 通道之间的数据传输
+    // 通道之间的数据传输，使用直接缓冲区
     public static void testChannel2Channel() throws IOException {
         // 获取通道
         FileChannel inChannel = FileChannel.open(Paths.get("D:\\Navicat注册码.txt"), StandardOpenOption.READ);
         FileChannel outChannel = FileChannel.open(Paths.get("D:\\Navicat注册码444.txt"), StandardOpenOption.READ,StandardOpenOption.WRITE,StandardOpenOption.CREATE);
 
         // 通过调用 transferTo 或者 transferFrom方法实现复制
-        inChannel.transferTo(0,inChannel.size(),outChannel);
-
+//        inChannel.transferTo(0,inChannel.size(),outChannel);
+        outChannel.transferFrom(inChannel,0,inChannel.size());
         inChannel.close();
         outChannel.close();
     }
@@ -80,6 +81,7 @@ public class ChannelTest {
             // 2. 分配指定缓冲区大小
             ByteBuffer buffer = ByteBuffer.allocate(1024);
 
+            // 循环读写
             // 3.向缓冲区写数据
             while (inChannel.read(buffer) != -1){
                 // 4.切换为读模式
@@ -121,7 +123,6 @@ public class ChannelTest {
                 }
             }
         }
-
-
     }
+
 }

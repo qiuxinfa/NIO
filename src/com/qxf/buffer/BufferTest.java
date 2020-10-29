@@ -51,7 +51,6 @@ public class BufferTest {
         System.out.println(title);
         System.out.println("position: "+buffer.position());
         System.out.println("limit: "+buffer.limit());
-        System.out.println("capacity: "+buffer.capacity());
         System.out.println("========================");
     }
 }
