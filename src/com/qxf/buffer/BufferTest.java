@@ -17,8 +17,10 @@ public class BufferTest {
      **/
     public static void main(String[] args) {
         String data = "abc123";
-
+        // 直接缓冲区和非直接缓冲区
         ByteBuffer buffer = ByteBuffer.allocate(1024);
+//        ByteBuffer.allocateDirect(1024);
+//        boolean direct = buffer.isDirect();
         printMsg("before put data",buffer);
 
         // 把数据放入缓存中
