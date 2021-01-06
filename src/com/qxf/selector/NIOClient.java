@@ -45,8 +45,10 @@ public class NIOClient {
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 for (SelectionKey selectionKey : selectionKeys){
                     if (selectionKey.isConnectable()){
+                        // 连接就绪
                         SocketChannel client = (SocketChannel) selectionKey.channel();
                         if (client.isConnectionPending()){
+                            // 完成连接
                             client.finishConnect();
                             System.out.println("连接成功...");
                         }

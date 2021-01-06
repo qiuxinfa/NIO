@@ -32,6 +32,7 @@ public class NIOServer {
             ServerSocket socket = serverSocketChannel.socket();
             selector = Selector.open();
             socket.bind(new InetSocketAddress(port));
+            // 准备接收请求
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("服务端启动成功");
         }catch (IOException e){
