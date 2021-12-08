@@ -44,7 +44,6 @@ public class BufferTest {
 
         buffer.reset();
         printMsg("after reset data",buffer);
-
     }
 
     public static void printMsg(String title,ByteBuffer buffer){
